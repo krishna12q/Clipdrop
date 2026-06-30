@@ -1,5 +1,5 @@
 from pathlib import Path
-from supabase_client import supabase
+from Clipdrop.helpers.supabase.supabase_client import supabase
 
 BASE_DIR = Path(__file__).parent
 
