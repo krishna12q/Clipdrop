@@ -69,3 +69,12 @@ def generate_code(length=5):
 
         if not validate_code(code):
             return code
+        
+def get_row_from_code(code:str):
+    cursor.execute("""
+    SELECT * FROM transfers WHERE code = %s 
+    """,(code,))
+
+    resultrow = cursor.fetchone()
+
+    return resultrow

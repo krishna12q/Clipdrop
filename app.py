@@ -3,10 +3,13 @@ from fastapi.templating import Jinja2Templates
 import random
 import string
 import psycopg2
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI()
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="frontend/html")
+app.mount("/static", StaticFiles(directory="frontend/css"), name="static")
 
 # PostgreSQL Connection
 conn = psycopg2.connect(
@@ -25,23 +28,43 @@ cursor = conn.cursor()
 @app.get("/")
 def home(request: Request):
     return templates.TemplateResponse(
-        "index.html",
-        {"request": request}
-    )
+    request=request,
+    name="index.html",
+    context={}
+)
 
 
 @app.get("/upload")
 def upload_page(request: Request):
     return templates.TemplateResponse(
-        "fileupload.html",
-        {"request": request}
+    request=request,
+    name="fileupload.html",
+    context={}
+)
+
+@app.get("/clipboard")
+def upload_text(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="clipboard.html",
+        context={}
     )
 
+@app.get("/receive")
+def receive_page(request:Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="receive.html",
+        context={}
+    )
 
-@app.get("/newcode")
-def new_code():
-    #code = generate_code()
+from fastapi import UploadFile, File
+
+@app.post("/uploadfilebackend")
+async def uploadfilebackend(file: UploadFile = File(...)):
+
+    print(file.filename)
 
     return {
-        #"code": code
+        "filename": file.filename
     }

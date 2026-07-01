@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/Clipdrop/frontend/css/style.css">
 </head>
 <body>
 
@@ -20,26 +21,13 @@
 
 <section class="hero">
 
-    <h1>Send text</h1>
-
-    <p>
-        Paste any text, code, links, or notes. We'll generate a transfer code that can be opened on another device.
+    <p>Code Generated</p>
+    <h1 style="margin-top: 2px;font-size: 100px;">4X68K</h1>
+    <p style="margin-top: -20px;">Just Paste The Code Into Your Browser And Download The File
     </p>
 
-    <form action="/clipboard" method="POST">
+    <br><br>
 
-        <textarea
-            name="text"
-            placeholder="Paste or type anything here..."
-            maxlength="10000"
-            required
-        ></textarea>
-
-        <button class="submit-btn" type="submit">
-            Generate Transfer Code
-        </button>
-
-    </form>
     <a href="/" class="back">
         ← Back to Home
     </a>

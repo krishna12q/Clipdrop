@@ -10,7 +10,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
@@ -23,31 +23,40 @@
     <h1>Upload a file</h1>
 
     <p>
-        Choose a file from your device. We'll generate a code that you can use to
-        download it on another device.
+        Choose a file from your device. We'll generate a code that you can use
+        to download it on another device.
     </p>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+    <div class="upload-box" id="uploadBox">
 
-        <label class="upload-box">
+        <div class="upload-content">
 
-            <input type="file" name="file" id="file" required>
+            <div class="icon">📁</div>
 
-            <div class="upload-content">
-                <div class="icon">📁</div>
+            <h3 id="filename">
+                Choose a file
+            </h3>
 
-                <h3 id="filename">Choose a file</h3>
+            <p id="filetext">
+                Click anywhere in this box to browse
+            </p>
 
-                <p>Click anywhere in this box to browse</p>
-            </div>
+        </div>
 
-        </label>
+    </div>
 
-        <button class="submit-btn" type="submit">
-            Upload File
-        </button>
+    <input
+        type="file"
+        id="file"
+        style="display:none;"
+    >
 
-    </form>
+    <button
+        class="submit-btn"
+        id="uploadBtn"
+    >
+        📤 Upload File
+    </button>
 
     <a href="/" class="back">
         ← Back to Home
@@ -57,14 +66,59 @@
 
 <script>
 
+const uploadBox = document.getElementById("uploadBox");
 const fileInput = document.getElementById("file");
+
 const filename = document.getElementById("filename");
+const filetext = document.getElementById("filetext");
 
-fileInput.addEventListener("change", function(){
+uploadBox.addEventListener("click", () => {
 
-    if(this.files.length > 0){
-        filename.textContent = this.files[0].name;
+    fileInput.click();
+
+});
+
+fileInput.addEventListener("change", () => {
+
+    if(fileInput.files.length > 0){
+
+        filename.textContent = fileInput.files[0].name;
+        filetext.textContent = "Ready to upload";
+
     }
+
+});
+
+document.getElementById("uploadBtn").addEventListener("click", async () => {
+
+    if(fileInput.files.length === 0){
+
+        alert("Choose a file first.");
+
+        return;
+
+    }
+
+    const formData = new FormData();
+
+    formData.append(
+        "file",
+        fileInput.files[0]
+    );
+
+    const response = await fetch(
+        "/uploadfilebackend",
+        {
+            method:"POST",
+            body:formData
+        }
+    );
+
+    const result = await response.json();
+
+    alert("Upload Successful!");
+
+    console.log(result);
 
 });
 
