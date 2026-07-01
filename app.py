@@ -19,9 +19,7 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 
-def generate_code(length=5):
-    chars = string.ascii_uppercase + string.digits
-    return "".join(random.choice(chars) for _ in range(length))
+
 
 
 @app.get("/")
@@ -42,8 +40,8 @@ def upload_page(request: Request):
 
 @app.get("/newcode")
 def new_code():
-    code = generate_code()
+    #code = generate_code()
 
     return {
-        "code": code
+        #"code": code
     }

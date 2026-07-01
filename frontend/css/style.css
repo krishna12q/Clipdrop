@@ -1,0 +1,405 @@
+/* =========================
+   Global
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",sans-serif;
+}
+
+body{
+    background:#fafafa;
+    color:#222;
+}
+
+a{
+    text-decoration:none;
+}
+
+/* =========================
+   Navigation
+========================= */
+
+nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 80px;
+    border-bottom:1px solid #e5e5e5;
+    background:white;
+}
+
+nav h2{
+    font-size:34px;
+    font-weight:800;
+    color:#00d8a2;
+    letter-spacing:-1px;
+}
+
+/* =========================
+   Hero Section
+========================= */
+
+.hero{
+    max-width:900px;
+    margin:90px auto;
+    padding:0 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:64px;
+    font-weight:800;
+    line-height:1.1;
+    letter-spacing:-2px;
+    margin-bottom:22px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:0 auto;
+    font-size:20px;
+    line-height:1.7;
+    color:#666;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.buttons{
+    margin-top:55px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    background:#00d8a2;
+    color:white;
+    padding:18px 38px;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:600;
+    transition:.2s;
+    min-width:210px;
+    text-align:center;
+}
+
+.btn:hover{
+    background:#00bf8f;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   Upload Page
+========================= */
+
+/* ===========================
+UPLOAD PAGE
+=========================== */
+
+.upload-box{
+    width:100%;
+    max-width:650px;
+    min-height:260px;
+
+    margin:55px auto 35px;
+
+    border:2px dashed #d6d6d6;
+    border-radius:14px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+}
+
+.upload-box:hover{
+    border-color:#00d8a2;
+    background:#f5fffc;
+}
+
+.upload-box input{
+    display:none;
+}
+
+.upload-content{
+    text-align:center;
+    padding:20px;
+}
+
+.icon{
+    font-size:64px;
+    margin-bottom:20px;
+}
+
+.upload-content h3{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.upload-content p{
+    font-size:18px;
+    color:#777;
+}
+
+.submit-btn{
+    display:block;
+    margin:0 auto;
+
+    padding:18px 45px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#00d8a2;
+    color:white;
+
+    font-size:18px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.submit-btn:hover{
+    background:#00bf8f;
+    transform:translateY(-2px);
+}
+
+.back{
+    display:inline-block;
+    margin-top:35px;
+
+    color:#00d8a2;
+    font-weight:600;
+}
+
+.back:hover{
+    text-decoration:underline;
+}
+
+/* Upload Button */
+
+.submit-btn{
+    margin-top:10px;
+    border:none;
+    background:#00d8a2;
+    color:white;
+    padding:18px 45px;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.submit-btn:hover{
+    background:#00bf8f;
+    transform:translateY(-2px);
+}
+
+/* Back Link */
+
+.back{
+    display:inline-block;
+    margin-top:35px;
+    color:#00d8a2;
+    font-weight:600;
+}
+
+.back:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width:768px){
+
+    nav{
+        padding:20px 25px;
+    }
+
+    nav h2{
+        font-size:30px;
+    }
+
+    .hero{
+        margin:60px auto;
+    }
+
+    .hero h1{
+        font-size:42px;
+        letter-spacing:-1px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .btn{
+        width:100%;
+        max-width:320px;
+    }
+
+    .upload-box{
+        padding:50px 20px;
+    }
+
+    .upload-content .icon{
+        font-size:48px;
+    }
+
+    .upload-content h3{
+        font-size:24px;
+    }
+}
+
+/* ===========================
+   RECEIVE PAGE
+=========================== */
+
+.receive-form{
+    max-width:450px;
+    margin:55px auto 0;
+}
+
+.receive-form input{
+    width:100%;
+    padding:18px;
+
+    border:2px solid #ddd;
+    border-radius:8px;
+
+    font-size:22px;
+    font-family:monospace;
+    text-transform:uppercase;
+    text-align:center;
+    letter-spacing:4px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+.receive-form input:focus{
+    border-color:#00d8a2;
+}
+
+.receive-form .submit-btn{
+    width:100%;
+    margin-top:20px;
+}
+
+.receive-form input::placeholder{
+    letter-spacing:normal;
+    font-family:"Inter",sans-serif;
+    font-size:18px;
+}
+
+/* ===========================
+   Divider
+=========================== */
+
+.divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:50px auto 30px;
+    max-width:500px;
+}
+
+.divider::before,
+.divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#ddd;
+}
+
+.divider span{
+    padding:0 20px;
+    color:#888;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+/* ===========================
+   Retrieve Section
+=========================== */
+
+.receive-section{
+    text-align:center;
+}
+
+.receive-section p{
+    color:#666;
+    margin-bottom:18px;
+    font-size:18px;
+}
+
+/* Secondary Button */
+
+.secondary{
+    background:white;
+    color:#00d8a2;
+    border:2px solid #00d8a2;
+}
+
+.secondary:hover{
+    background:#00d8a2;
+    color:white;
+}
+
+/* ===========================
+   SEND TEXT PAGE
+=========================== */
+
+textarea{
+    width:100%;
+    max-width:700px;
+    min-height:260px;
+
+    margin:50px auto 30px;
+    display:block;
+
+    padding:20px;
+
+    border:2px solid #ddd;
+    border-radius:10px;
+
+    resize:vertical;
+
+    font-size:17px;
+    font-family:"Inter",sans-serif;
+    line-height:1.6;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+textarea:focus{
+    border-color:#00d8a2;
+}
+
+textarea::placeholder{
+    color:#999;
+}
