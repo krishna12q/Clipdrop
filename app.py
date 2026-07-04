@@ -87,7 +87,9 @@ def generated(request: Request, code: str):
     )
 
 from fastapi.responses import FileResponse
-from helpers.supabase.supabase_downloader import download_file
+
+from fastapi.responses import Response
+from helpers.supabase.supabase_client import supabase
 
 @app.post("/receivecode")
 def receive_code(
@@ -104,17 +106,19 @@ def receive_code(
             context={}
         )
 
-    elif transfer["type"] == "file":
+    if transfer["type"] == "file":
 
-        local_file = download_file(
-            transfer["storage_path"],
-            transfer["filename"]
+        file_bytes = supabase.storage.from_("uploads").download(
+            transfer["storage_path"]
         )
 
-        return FileResponse(
-            path=local_file,
-            filename=transfer["filename"],
-            media_type="application/octet-stream"
+        return Response(
+            content=file_bytes,
+            media_type="application/octet-stream",
+            headers={
+                "Content-Disposition":
+                f'attachment; filename="{transfer["filename"]}"'
+            }
         )
 
     elif transfer["type"] == "text":
@@ -123,16 +127,8 @@ def receive_code(
             request=request,
             name="showtext.html",
             context={
-                "code":code,
                 "text": transfer["filename"]
             }
-        )
-
-    else:
-        return templates.TemplateResponse(
-            request=request,
-            name="invalidcode.html",
-            context={}
         )
 
     
