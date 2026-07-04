@@ -1,5 +1,5 @@
 from pathlib import Path
-from helpers.supabase.supabase_client import supabase
+from Clipdrop.helpers.supabase.supabase_client import supabase
 
 def upload(filenamed:str):
     BASE_DIR = Path(__file__).parent

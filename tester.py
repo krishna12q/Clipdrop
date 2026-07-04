@@ -1,6 +1,6 @@
 from upload_test import upload
 from helpers.postgres.create_table import validate_code, save_file, generate_code, get_row_from_code
-from helpers.supabase.supabase_downloader import download_file
+from Clipdrop.helpers.supabase.supabase_downloader import download_file
 
 
 

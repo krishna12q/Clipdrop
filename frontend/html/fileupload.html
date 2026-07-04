@@ -73,9 +73,7 @@ const filename = document.getElementById("filename");
 const filetext = document.getElementById("filetext");
 
 uploadBox.addEventListener("click", () => {
-
     fileInput.click();
-
 });
 
 fileInput.addEventListener("change", () => {
@@ -93,7 +91,7 @@ document.getElementById("uploadBtn").addEventListener("click", async () => {
 
     if(fileInput.files.length === 0){
 
-        alert("Choose a file first.");
+        alert("Please choose a file first.");
 
         return;
 
@@ -106,19 +104,37 @@ document.getElementById("uploadBtn").addEventListener("click", async () => {
         fileInput.files[0]
     );
 
-    const response = await fetch(
-        "/uploadfilebackend",
-        {
+    try{
+
+        const response = await fetch("/uploadfilebackend",{
+
             method:"POST",
             body:formData
+
+        });
+
+        const result = await response.json();
+
+        if(result.success){
+
+            window.location.href =
+                "/generated?code=" + encodeURIComponent(result.code);
+
         }
-    );
+        else{
 
-    const result = await response.json();
+            alert("Upload failed.");
 
-    alert("Upload Successful!");
+        }
 
-    console.log(result);
+    }
+    catch(err){
+
+        console.error(err);
+
+        alert("Server Error");
+
+    }
 
 });
 
